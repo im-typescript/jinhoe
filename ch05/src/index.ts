@@ -1,6 +1,7 @@
 
 import { arrayLength, isEmpty } from "./arrayLength";
 import { range } from "./range";
+import { fold } from "./fold";
 
 let numArray: number[] = [1,2,3]
 let strArray: string[] = ['Hello', "world"]
@@ -16,6 +17,11 @@ console.log(
     isEmpty([1])
 )
 
+// let numbers: number[] = range(1, 9+1)
+// console.log(numbers)
 
-let numbers: number[] = range(1, 9+1)
-console.log(numbers)
+let numbers: number[] = range(1, 100+1)
+
+let result = fold(numbers, (result, value) => result*value, 1)
+console.log(result)
+

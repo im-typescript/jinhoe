@@ -1,7 +1,7 @@
 ## 프로젝트 생성하는 법
 
 1. 해당 폴더 진입
-2. npm init --y // 노드js 프로젝트를 먼저 만들기
+2. npm init -y // 노드js 프로젝트를 먼저 만들기
 3. npm i -D typescript ts-node // (-g 전역으로 설치되어있지 않을 경우를 대비해) 개발환경에 typescript, ts-node 패키지 설치 
 4. npm i -D @types/node // 자바스크립트로 개발된 라이브러리를 타입스크립트에서 쓸 수 있게 @types/??? 설치
 // 3, 4의 설치과정을 진행하면 설치한 패키지들의 목록이 package.json에 자동으로 등록됨

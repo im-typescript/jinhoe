@@ -11,10 +11,10 @@
 // printMe(3,1); // 이건 에러가 나는데
 
 // comments.ts
-let printMe: (string, number) => void = function (name: string, age: number): void { 
+let printMe: (a: string, b:number) => void = function (name, age) { 
     console.log(`name: ${name}, age: ${age}`); 
 }
-printMe(3,1); // 이건 에러가 안 나네? -> 매개변수에 타입만 넣으면 안 되고 이름(변수명)을 넣어줘야 한다.
+printMe("string",1); // 이건 에러가 안 나네? -> 매개변수에 타입만 넣으면 안 되고 이름(변수명)을 넣어줘야 한다.
 // console.log(typeof printMe);
 // let what = printMe(false,25); // name parameter는 string이어야할 것 같은데 number도 상관 없네?
 // console.log(what)

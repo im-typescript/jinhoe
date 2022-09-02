@@ -7,7 +7,7 @@ export const writeCsvformatFakeData = async(filename: string,
     numberOfItems: number): Promise<string> => {
         const dirname = path.dirname(filename)
         await mkdir(dirname)
-        const comma = 'n', newLine = '\n'
+        const comma = ',', newLine = '\n'
         for(let n of range(numberOfItems)) {
             const fake: IFake = makeFakeData()
             if(n == 0) {

@@ -10,8 +10,10 @@ export function * readFileGenerator(filename: string): any {
         const buffer = Buffer.alloc(bufferSize+4)
         let filepos = 0, line
 
-        while(filepos > -1){
+        while(filepos > -1){ // 여기서 라인이 잘못 쪼개지는 거 같은데 ?
             [line, filepos] = readLine(fd, buffer, bufferSize, filepos)
+            // console.log("readFileGenerator - line: ");
+            // console.log(line);
             if(filepos > -1){
                 yield line
             }
@@ -31,18 +33,26 @@ function readLine(fd: any, buffer: Buffer, bufferSize: number, position: number)
     const crSize = '\n'.length
 
     while(true) {
-        readSize = fs.readSync(fd, buffer, 0, bufferSize, position)
+        readSize = fs.readSync(fd, buffer, 0, bufferSize, position);
+        console.log("readLine 37 -position, crSize ");
+        console.log(position, crSize);
         if(readSize > 0){
             const temp = buffer.toString('utf8', 0, readSize)
             const index = temp.indexOf('\n')
+
             if(index > -1){
+
                 line += temp.substr(0, index);
                 position += index + crSize;
+                console.log("readLine 44 - line: ");
+                console.log(index, crSize, line);
                 break
             } else {
                 line += temp;
                 position += temp.length;
             }
+            console.log("readLine 51 - line: ");
+            console.log(line);
         } else {
             position = -1 // end of file
             break;
@@ -50,3 +60,5 @@ function readLine(fd: any, buffer: Buffer, bufferSize: number, position: number)
     }
     return [line.trim(), position]
 }
+
+

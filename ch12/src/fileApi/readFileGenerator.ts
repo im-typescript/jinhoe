@@ -6,7 +6,7 @@ export function * readFileGenerator(filename: string): any {
     try {
         fd = fs.openSync(filename, 'rs')
         const stats = fs.fstatSync(fd)
-        const bufferSize = Math.min(stats.size, 1024)
+        const bufferSize = Math.min(stats.size, 512)
         const buffer = Buffer.alloc(bufferSize+4)
         let filepos = 0, line
 
@@ -26,7 +26,8 @@ export function * readFileGenerator(filename: string): any {
 
 
 function readLine(fd: any, buffer: Buffer, bufferSize: number, position: number): [string, number] {
-    let line = '', readSize
+    let line = '';
+    let readSize;
     const crSize = '\n'.length
 
     while(true) {

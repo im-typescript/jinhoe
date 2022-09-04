@@ -7,7 +7,7 @@ export function * readFileGenerator(filename: string): any {
         fd = fs.openSync(filename, 'rs')
         const stats = fs.fstatSync(fd)
         const bufferSize = Math.min(stats.size, 512)
-        const buffer = Buffer.alloc(bufferSize+4)
+        const buffer = Buffer.alloc(bufferSize)
         let filepos = 0, line
 
         while(filepos > -1){ // 여기서 라인이 잘못 쪼개지는 거 같은데 ?
@@ -34,25 +34,27 @@ function readLine(fd: any, buffer: Buffer, bufferSize: number, position: number)
 
     while(true) {
         readSize = fs.readSync(fd, buffer, 0, bufferSize, position);
-        console.log("readLine 37 -position, crSize ");
-        console.log(position, crSize);
+        // console.log("readLine 37 -position, crSize ");
+        // console.log(position, crSize);
         if(readSize > 0){
             const temp = buffer.toString('utf8', 0, readSize)
+            // console.log("temp: ");
+            // console.log(temp);
             const index = temp.indexOf('\n')
 
             if(index > -1){
 
                 line += temp.substr(0, index);
                 position += index + crSize;
-                console.log("readLine 44 - line: ");
-                console.log(index, crSize, line);
+                // console.log("readLine 44 - line: ");
+                // console.log(index, crSize, line);
                 break
             } else {
                 line += temp;
                 position += temp.length;
             }
-            console.log("readLine 51 - line: ");
-            console.log(line);
+            // console.log("readLine 51 - line: ");
+            // console.log(line);
         } else {
             position = -1 // end of file
             break;

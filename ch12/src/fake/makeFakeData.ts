@@ -8,6 +8,7 @@ export const makeFakeData = (): IFake => ({
     email: c.email(),
     profession: c.profession(),
     sentence: c.sentence(),
+    birthday: c.birthday().toISOString(),
 })
 
 export {IFake}

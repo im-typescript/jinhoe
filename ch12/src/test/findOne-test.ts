@@ -1,22 +1,20 @@
 import {connect} from '../mongodb/connect'
+import {ObjectId} from 'mongodb'
 
 
-const findDocumentTest = async() =>{
+const findOneTest = async() =>{
     let connection, cursor
     try {
         connection = await connect();
         const db = await connection.db('ch12-2');
         const personsCollection = db.collection('persons');
-        const addressesCollection = db.collection('addresses');
 
-        cursor = personsCollection.find({name:'Jack'});
+        cursor = personsCollection.find({});
         const foundPersons = await cursor.toArray()
-        console.log(foundPersons);
 
-        cursor = addressesCollection.find({});
-        const foundAddresses = await cursor.toArray()
-        console.log(foundAddresses);
-
+        const _id = foundPersons[0]._id
+        const result = await personsCollection.findOne({_id});
+        console.log(result);
 
     } catch(e:any){
         console.log(e.message);
@@ -25,4 +23,4 @@ const findDocumentTest = async() =>{
     }
 }
 
-findDocumentTest();
+findOneTest();

@@ -28,10 +28,9 @@ const App: React.FC = () => {
 
   useEffect(onClick, []);
   return (
-      <div className='App'>
-        <p><button onClick={onClick}>more data...</button></p>
-        <p>{JSON.stringify(users)}</p>
-      </div>
+      <div className='App'>{
+        users.map((user: IUser, key: number) => (<Card click = {onClick} user={user} key={key.toString()} />))
+      }</div>
   )
 }
 

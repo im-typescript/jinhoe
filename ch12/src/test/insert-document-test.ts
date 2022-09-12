@@ -13,7 +13,7 @@ const insertDocumentTest = async() =>{
         let result = await personsCollection.insertOne(person)
         console.log(result);
         
-        const address = { contry: 'korea', city: 'seoul'}
+        const address = { country: 'korea', city: 'seoul'}
         result = await addressesCollection.insertOne(address);
         console.log(result);
 
